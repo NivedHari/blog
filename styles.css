@@ -1,0 +1,54 @@
+.formDiv {
+    background-color: rgb(69, 69, 183);
+    color: white;
+    width: 30rem;
+    height: 20rem;
+    padding: 2rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formDiv h2 {
+    font-size: 2rem;
+}
+
+.blogForm label{
+    display: block;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+.blogForm input {
+    width: 20rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+.blogForm textarea {
+    width: 20rem;
+    padding: 0.5rem;
+}
+
+.blogForm button{
+    margin: 1rem auto;
+    border-radius: 10px;
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+}
+
+.blogDiv {
+    padding: 1rem;
+}
+
+.blogList {
+    list-style: none;
+    padding: 1rem;
+}
+
+.blogList li {
+    margin: 1rem;
+    background-color: rgb(219, 206, 206);
+    border-radius: 10px;
+    padding: 1rem;
+}
