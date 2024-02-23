@@ -7,9 +7,10 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="container">
   <div class="formDiv">
     <form id="blogForm" class="blogForm">
-      <h2>Create a blog</h2>
+      <h2>Create a Blog</h2>
       <div>
         <label>Blog Title</label>
         <input type="text" id="blogTitle" />
@@ -23,151 +24,15 @@
         <label>Content</label>
         <textarea id="blogContent"></textarea>
       </div>
-      <button type="submit">Submit</button>
+      <div class="btnDiv"><button type="submit">Submit</button></div>
+      
     </form>
   </div>
   <div class="blogDiv">
     <ul class="blogList" id="blogList"></ul>
   </div>
+</div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      loadBlogs();
-    });
-
-    function loadBlogs() {
-      fetch("http://localhost:8000/api/blogs")
-        .then(res => res.json())
-        .then(data => {
-          data.blogs.forEach(blog => {
-            addBlogToList(blog);
-            fetchCommentsForBlog(blog.id);
-          });
-        })
-        .catch(err => console.error(err));
-    }
-
-    function addBlogToList(blog) {
-      var li = document.createElement('li');
-      li.textContent = `${blog.title} - ${blog.author}: ${blog.content}`;
-      li.id = `blog-${blog.id}`;
-
-      var commentForm = document.createElement('form');
-      var commentInput = document.createElement('input');
-      var commentButton = document.createElement('button');
-      commentInput.type = 'text';
-      commentInput.placeholder = 'Add a comment';
-      commentButton.type = 'submit';
-      commentButton.textContent = 'Comment';
-      commentForm.appendChild(commentInput);
-      commentForm.appendChild(commentButton);
-
-      li.appendChild(commentForm);
-
-      document.getElementById('blogList').appendChild(li);
-
-      commentForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        var comment = commentInput.value;
-        var blogId = blog.id;
-
-        var commentData = {
-          comment,
-          blogId
-        };
-
-        fetch("http://localhost:8000/api/comments", {
-          method: "POST",
-          body: JSON.stringify(commentData),
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-          addCommentToList(data.comment, blogId);
-          commentInput.value = '';
-        })
-        .catch(err => console.error(err));
-      });
-    }
-
-function addCommentToList(comment, blogId) {
-  var blogItem = document.getElementById(`blog-${blogId}`);
-  if (blogItem) {
-    var commentLi = document.createElement('li');
-    commentLi.textContent = comment.content; 
-
-    var deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete';
-    deleteButton.addEventListener('click', function() {
-      deleteComment(comment.id);
-      commentLi.remove();
-    });
-
-    commentLi.appendChild(deleteButton);
-    blogItem.appendChild(commentLi);
-  }
-}
-
-function deleteComment(commentId) {
-  fetch(`http://localhost:8000/api/comments/${commentId}`, {
-    method: 'DELETE'
-  })
-  .then(res => {
-    if (res.ok) {
-      console.log('Comment deleted');
-    } else {
-      console.error('Failed to delete');
-    }
-  })
-  .catch(err => console.error(err));
-}
-
-    function fetchCommentsForBlog(blogId) {
-      fetch(`http://localhost:8000/api/comments/${blogId}`)
-        .then(res => res.json())
-        .then(data => {
-          
-          if(data && data.comments) {
-            data.comments.forEach(comment => {
-            addCommentToList(comment, blogId);
-          });
-          }
-          
-        })
-        .catch(err => console.error(err));
-    }
-
-    document.getElementById('blogForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      var title = document.getElementById('blogTitle').value;
-      var author = document.getElementById('blogAuthor').value;
-      var content = document.getElementById('blogContent').value;
-
-      var blog = {
-        title,
-        author,
-        content
-      };
-
-      fetch("http://localhost:8000/api/blogs", {
-        method: "POST",
-        body: JSON.stringify(blog),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      .then(res => res.json())
-      .then(data => {
-        addBlogToList(data.blog);
-        document.getElementById('blogForm').reset();
-      })
-      .catch(err => console.error(err));
-    });
-  </script>
+  <script src="index.js"></script>
 </body>
 </html>

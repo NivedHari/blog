@@ -1,54 +1,121 @@
+body {
+  background-color: rgb(120, 120, 226);
+}
+
 .formDiv {
-    background-color: rgb(69, 69, 183);
-    color: white;
-    width: 30rem;
-    height: 20rem;
-    padding: 2rem 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background-color: rgb(69, 69, 183);
+  color: white;
+  width: 30rem;
+  height: 20rem;
+  padding: 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.428);
+  margin-top: 3rem;
+  margin-left: 3rem;
 }
 
 .formDiv h2 {
-    font-size: 2rem;
+  font-size: 2rem;
+  text-align: center;
 }
 
-.blogForm label{
-    display: block;
-    margin-top: 1rem;
-    font-size: 1rem;
+.blogForm label {
+  display: block;
+  margin-top: 1rem;
+  font-size: 1rem;
 }
 
 .blogForm input {
-    width: 20rem;
-    padding: 0.5rem;
-    font-size: 1rem;
+  width: 20rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid white;
 }
 
 .blogForm textarea {
-    width: 20rem;
-    padding: 0.5rem;
+  width: 20rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid white;
 }
 
-.blogForm button{
-    margin: 1rem auto;
-    border-radius: 10px;
-    padding: 0.5rem 2rem;
-    cursor: pointer;
+.blogForm button {
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.149);
+}
+
+.btnDiv {
+  margin: 1.5rem auto;
+  display: flex;
+  justify-content: center;
 }
 
 .blogDiv {
-    padding: 1rem;
+  background-color: rgb(120, 120, 226);
+  width: 50rem;
 }
 
 .blogList {
-    list-style: none;
-    padding: 1rem;
+  list-style: none;
+  padding: 1rem;
 }
 
 .blogList li {
-    margin: 1rem;
-    background-color: rgb(219, 206, 206);
-    border-radius: 10px;
-    padding: 1rem;
+  margin: 1rem;
+  background-color: rgba(226, 230, 238, 0.693);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.248);
+  position: relative;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#blogList input {
+  width: 20rem;
+  padding: 0.2rem;
+}
+
+#blogList h3 {
+  font-size: 1.5rem;
+}
+#blogList p {
+  font-size: 1.2rem;
+}
+
+#blogList button {
+  background-color: rgb(69, 69, 183);
+  color: white;
+  cursor: pointer;
+}
+
+.blogItem {
+  position: relative;
+}
+
+.expandBtn {
+  position: absolute;
+  top: 2rem;
+  right: 1rem;
+  border-radius: 5px;
+    width: 1.5rem;
+    height: 1.5rem;
+  font-size: 1.2rem;
+  border: none;
+}
+
+.btnDelete {
+  position: absolute;
+  right: 1rem;
 }
